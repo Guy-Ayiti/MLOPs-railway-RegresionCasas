@@ -17,7 +17,7 @@ def health_check():
     return {"status": "healthy"}
 
 @app.post("/predict")
-async def predict_bancknote(file: UploadFile = File(...)):
+async def predict_banknote(file: UploadFile = File(...)):
     classifier = load("linear_regression.joblib")
     
     features_df = pd.read_csv('selected_features.csv')
