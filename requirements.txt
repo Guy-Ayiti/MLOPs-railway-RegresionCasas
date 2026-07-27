@@ -10,3 +10,5 @@ python-multipart
 pyngrok
 pytz
 cryptography
+google-cloud-bigquery
+db-dtypes
