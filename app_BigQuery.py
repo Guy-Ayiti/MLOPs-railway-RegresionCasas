@@ -89,9 +89,9 @@ async def predict_banknote(db: Session=Depends(get_db)):
         'created_at': now })
 
     #predictions_df.to_sql('predictions', con=engine, if_exists='replace', index=False)
-    Datos = pd.concat([df,predictions_df])
+    Datos = pd.concat([df,predictions_df], axis=1)
     Datos.to_sql('Predictions', con=engine, if_exists='replace', index=True)
     
     return {
-        "predictions": predictions.tolist()
+        "predictions": Datos.tolist()
     }
