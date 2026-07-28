@@ -93,5 +93,5 @@ async def predict_banknote(db: Session=Depends(get_db)):
     Datos.to_sql('Predictions', con=engine, if_exists='replace', index=True)
     
     return {
-        "predictions": Datos.tolist()
+        "predictions": Datos #.tolist()
     }
