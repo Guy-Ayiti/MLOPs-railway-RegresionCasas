@@ -63,11 +63,11 @@ def read_root():
 
 @app.get("/health")
 def health_check(db=Depends(get_db)):
-    return {"status": "healthy",
-            "message": "Se conectó exitosamente a la Base de Datos"}
+    return {"status": "healthy"}
+            #"message": "Se conectó exitosamente a la Base de Datos"}
 
 @app.post("/predict")
-async def predict_banknote():
+async def predict_banknote(db: Session=Depends(get_db)):
     classifier = load("linear_regression.joblib")
     
     features_df = pd.read_csv('selected_features.csv')
