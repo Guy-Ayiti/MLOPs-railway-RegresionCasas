@@ -63,8 +63,7 @@ def read_root():
 
 @app.get("/health")
 def health_check(db=Depends(get_db)):
-    return {"status": "healthy",
-            "message": "Se conectó exitosamente a la Base de Datos"}
+    return {"status": "healthy"}
 
 @app.post("/predict")
 async def predict_banknote(db: Session=Depends(get_db)):
