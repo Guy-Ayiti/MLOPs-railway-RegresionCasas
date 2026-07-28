@@ -12,3 +12,4 @@ pytz
 cryptography
 google-cloud-bigquery
 db-dtypes
+tabulate
