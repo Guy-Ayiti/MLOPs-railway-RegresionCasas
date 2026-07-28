@@ -34,7 +34,7 @@ app = FastAPI()
 #load_dotenv(find_dotenv())
 
 gcp_secrets = json.loads(os.getenv("GCP_CREDENTIALS"))
-#clientBQ = bigquery.Client.from_service_account_json(gcp_secrets)
+##clientBQ = bigquery.Client.from_service_account_json(gcp_secrets)
 clientBQ = bigquery.Client.from_service_account_info(gcp_secrets)
 tableBQ = os.environ["BIGQUERY_TABLE"]
 
