@@ -74,6 +74,7 @@ async def predict_banknote(db: Session=Depends(get_db)):
     features = features_df['0'].to_list()
 
     query = f"SELECT * FROM `{tableBQ}`"
+    print('============================QUERY =',query)
     df = clientBQ.query(query).to_dataframe()
     df = df[features]
 
