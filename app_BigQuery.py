@@ -64,7 +64,8 @@ def read_root():
 
 @app.get("/health")
 def health_check(db=Depends(get_db)):
-    return {"status": "healthy"}
+    return {"status": "healthy",
+            "message": "Se conectó de manera exitosa a la Base de Datos"}
 
 @app.post("/predict")
 async def predict_banknote(db: Session=Depends(get_db)):
@@ -87,7 +88,9 @@ async def predict_banknote(db: Session=Depends(get_db)):
         'prediction': predictions, 
         'created_at': now })
 
-    predictions_df.to_sql('predictions', con=engine, if_exists='replace', index=False)
+    #predictions_df.to_sql('predictions', con=engine, if_exists='replace', index=False)
+    Datos = pd.concat([df,predictions_df])
+    Datos.to_sql('Predictions', con=engine, if_exists='replace', index=True)
     
     return {
         "predictions": predictions.tolist()
