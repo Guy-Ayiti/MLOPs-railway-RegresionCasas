@@ -73,8 +73,7 @@ async def predict_banknote(db: Session=Depends(get_db)):
     features_df = pd.read_csv('selected_features.csv')
     features = features_df['0'].to_list()
 
-    query = f"SELECT * FROM `{tableBQ}`"
-    print('============================QUERY =',query)
+    query = f"SELECT * FROM `{tableBQ}`"    
     df = clientBQ.query(query).to_dataframe()
     df = df[features]
 
@@ -88,7 +87,7 @@ async def predict_banknote(db: Session=Depends(get_db)):
         'prediction': predictions, 
         'created_at': now })
 
-    predictions_df.to_sql('predictions', con=engine, if_exists='append', index=False)
+    predictions_df.to_sql('predictions', con=engine, if_exists='replace', index=False)
     
     return {
         "predictions": predictions.tolist()
